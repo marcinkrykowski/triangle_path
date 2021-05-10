@@ -1,5 +1,7 @@
 package com.krykowski
 
+import scala.util.{Failure, Success}
+
 case class Solution(cost: Int, path: List[Int]) {
   def addHead(headCost: Int) = Solution(headCost + cost, headCost :: path)
 }
@@ -20,5 +22,14 @@ object Solution {
     }
     val finalSolution = reversedTriangle.foldLeft(emptySolutions)((belowSolutions, row) => solveOneRow(row, belowSolutions))
     finalSolution.head
+  }
+
+  def run(fileName: String): Unit = {
+    val triangle = Parser.parse(fileName)
+
+    triangle match {
+      case Success(value) => println(solveTriangle(value))
+      case Failure(exception) => println(ParsingException(exception))
+    }
   }
 }
