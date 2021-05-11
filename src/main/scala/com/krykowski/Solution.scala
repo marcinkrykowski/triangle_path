@@ -3,7 +3,7 @@ package com.krykowski
 import scala.util.{Failure, Success}
 
 case class Solution(cost: Int, path: List[Int]) {
-  def addHead(headCost: Int) = Solution(headCost + cost, headCost :: path)
+  def addHead(headCost: Int): Solution = Solution(headCost + cost, headCost :: path)
 }
 
 object Solution {
@@ -24,12 +24,13 @@ object Solution {
     finalSolution.head
   }
 
-  def run(fileName: String): Unit = {
+  def run(fileName: String): Either[ParsingException, Solution] = {
     val triangle = Parser.parse(fileName)
 
     triangle match {
-      case Success(value) => println(solveTriangle(value))
-      case Failure(exception) => println(ParsingException(exception))
+      case Success(value) => Right(solveTriangle(value))
+      case Failure(exception) => Left(ParsingException(exception))
     }
   }
+
 }

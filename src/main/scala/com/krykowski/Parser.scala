@@ -1,9 +1,7 @@
 package com.krykowski
 
-import com.krykowski.Solution.solveTriangle
-
 import scala.io.Source
-import scala.util.{Failure, Success, Try}
+import scala.util.Try
 
 
 object Parser {
@@ -19,5 +17,9 @@ object Parser {
       source.close()
       lines.reverse
     }
+
+  def makeSolution(solution: Solution): String = {
+    s"Minimal path is: ${solution.path.map(_.toString).mkString(" + ")} = ${solution.cost}"
+  }
 }
 

@@ -23,4 +23,10 @@ class ParserSpec extends AnyFlatSpec with Matchers {
     assertThrows[FileNotFoundException](Parser.parse("notExistingFile.txt").get)
   }
 
+  it should "make correct String from solution" in {
+    val solution = Solution(6, List(2, 1, 3))
+    val statement = Parser.makeSolution(solution)
+
+    statement mustEqual "Minimal path is: 2 + 1 + 3 = 6"
+  }
 }
