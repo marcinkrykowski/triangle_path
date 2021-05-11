@@ -16,3 +16,6 @@ I also used some type aliases and custom exceptions in `package` object. As well
 ## Libraries used
 I tried to stick to vanilla Scala, so the only libraries I used are `scalatest` and `scalactic`.
 
+## TODO
+- [ ] add possibility to pass the file as an argument
+- [ ] make solution command line application
