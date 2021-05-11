@@ -15,12 +15,12 @@ object Solution {
   }
 
   def solveTriangle(triangle: Triangle): Solution = {
-    val reversedTriangle = triangle.reverse
-    val nBottom = reversedTriangle.head.size
-    val emptySolutions: List[Solution] = List.fill(nBottom + 1) {
+    val bottomUpTriangle = triangle.reverse
+    val lastRowSize = bottomUpTriangle.head.size
+    val emptySolutions: List[Solution] = List.fill(lastRowSize + 1) {
       Solution(0, List())
     }
-    val finalSolution = reversedTriangle.foldLeft(emptySolutions)((belowSolutions, row) => solveOneRow(row, belowSolutions))
+    val finalSolution = bottomUpTriangle.foldLeft(emptySolutions)((belowSolutions, row) => solveOneRow(row, belowSolutions))
     finalSolution.head
   }
 
